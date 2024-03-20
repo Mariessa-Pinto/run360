@@ -1,14 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Run360</title>
-    <link rel="stylesheet" href="./styles/main.css">
-</head>
-<body>
-    
-    <script>
-    </script>
+<%- include('partials/header.ejs'); -%>
+    <h1>Home</h1>
+
+    <% for(let run of listRuns) { %>
+        <div class="run">
+            <form class="edit" action="/edit" method="post">
+                <input type="hidden" name="updatedItemTitle" value="<%= run.title %>">
+                <input id="input<%= run.location %>" type="text" name="updatedLocation" value="<%= run.location %>"
+                    autocomplete="off" autofocus="true" hidden="true" />
+                <input id="input<%= run.time %>" type="text" name="updatedTime" value="<%= run.time %>"
+                    autocomplete="off" autofocus="true" hidden="true" />
+                <input id="input<%= run.distance %>" type="text" name="updatedDistance" value="<%= run.distance %>"
+                    autocomplete="off" autofocus="true" hidden="true" />
+                <input id="input<%= run.notes %>" type="text" name="updatedNotes" value="<%= run.notes %>"
+                    autocomplete="off" autofocus="true" hidden="true" />
+
+                <button id="done<%= run.id %>" class="edit" type="submit" hidden><img class="icon" src=""
+                        alt="tick image"></button>
+            </form>
+            <button id="edit<%= run.id %>" class="edit" onclick="handler('<%= run.id %>')"><img class="icon"
+                    src="/assets/icons/pencil-solid.svg" alt="pencil image"></button>
+        </div>
+    <% } %>
+</main>
+
+<script>
+</script>
 </body>
 </html>
