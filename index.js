@@ -12,8 +12,8 @@ const port = 3000;
 const db = new pg.Client({
     user: "postgres",
     host: "localhost",
-    database: "countries",
-    password: "62736Mlp",
+    database: "run360",
+    password: "123456",
     port: 5432,
 });
 db.connect();
@@ -44,6 +44,18 @@ app.get("/allRuns", async (req, res) => {
         res.render("allRuns");
     } catch (err) {
         console.log(err);
+    }
+});
+
+app.post("/add", async (req, res) => {
+    const { location, distance, time, notes } = req.body; 
+
+    try {
+        await db.query("INSERT INTO items (location, distance, time, notes) VALUES ($1, $2, $3, $4)", [location, distance, time, notes]);
+        res.redirect("/");
+    } catch (err) {
+        console.log(err);
+        res.send("Error adding the run.");
     }
 });
 
