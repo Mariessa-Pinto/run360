@@ -41,21 +41,36 @@ app.get("/", async (req, res) => {
 
 app.get("/allRuns", async (req, res) => {
     try {
-        res.render("allRuns");
+        const result = await db.query("SELECT * FROM items ORDER BY id ASC");
+        const listRuns = result.rows; 
+        res.render("allRuns", { listRuns });
     } catch (err) {
         console.log(err);
+        res.status(500).send("Error fetching runs.");
     }
 });
 
 app.post("/add", async (req, res) => {
-    const { location, distance, time, notes } = req.body; 
+    const { title, location, distance, time, notes } = req.body; 
 
     try {
-        await db.query("INSERT INTO items (location, distance, time, notes) VALUES ($1, $2, $3, $4)", [location, distance, time, notes]);
+        await db.query("INSERT INTO items (title, location, distance, time, notes) VALUES ($1, $2, $3, $4, $5)", [title, location, distance, time, notes]);
         res.redirect("/");
     } catch (err) {
         console.log(err);
         res.send("Error adding the run.");
+    }
+});
+
+app.post("/edit", async (req, res) => {
+    const { id, title, location, distance, time, notes } = req.body; 
+
+    try {
+        await db.query("UPDATE items SET title=$1, location=$2, distance=$3, time=$4, notes=$5 WHERE id=$6", [title, location, distance, time, notes, id]);
+        res.redirect("/");
+    } catch (err) {
+        console.log(err);
+        res.send("Error updating the run.");
     }
 });
 

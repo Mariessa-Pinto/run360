@@ -1,29 +1,61 @@
 <%- include('partials/header.ejs'); -%>
-    <h1>Home</h1>
+<h1>Home</h1>
 
-    <% for(let run of listRuns) { %>
-        <div class="run">
-            <form class="edit" action="/edit" method="post">
-                <input type="hidden" name="updatedItemTitle" value="<%= run.title %>">
-                <input id="input<%= run.location %>" type="text" name="updatedLocation" value="<%= run.location %>"
-                    autocomplete="off" autofocus="true" hidden="true" />
-                <input id="input<%= run.time %>" type="text" name="updatedTime" value="<%= run.time %>"
-                    autocomplete="off" autofocus="true" hidden="true" />
-                <input id="input<%= run.distance %>" type="text" name="updatedDistance" value="<%= run.distance %>"
-                    autocomplete="off" autofocus="true" hidden="true" />
-                <input id="input<%= run.notes %>" type="text" name="updatedNotes" value="<%= run.notes %>"
-                    autocomplete="off" autofocus="true" hidden="true" />
+<!-- Form for adding a new run -->
+<div class="run">
+    <form class="edit" action="/add" method="post">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" autocomplete="off" autofocus required>
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" autocomplete="off" autofocus required>
+        <label for="time">Time:</label>
+        <input type="text" id="time" name="time" autocomplete="off" required>
+        <label for="distance">Distance:</label>
+        <input type="text" id="distance" name="distance" autocomplete="off" required>
+        <label for="notes">Notes:</label>
+        <input type="text" id="notes" name="notes" autocomplete="off">
+        <a href="/allRuns"><button type="submit">Add Run</button></a>
+    </form>
+</div>
 
-                <button id="done<%= run.id %>" class="edit" type="submit" hidden><img class="icon" src=""
-                        alt="tick image"></button>
-            </form>
-            <button id="edit<%= run.id %>" class="edit" onclick="handler('<%= run.id %>')"><img class="icon"
-                    src="/assets/icons/pencil-solid.svg" alt="pencil image"></button>
-        </div>
-    <% } %>
-</main>
+<!-- Most recent 2 runs displaying-->
+<% listRuns.reverse().slice(0, 2).forEach(run => { %>
+    <div class="run-item">
+        <p><strong> <%= run.title %></strong></p>
+        <p><strong>Location:</strong> <%= run.location %></p>
+        <p><strong>Distance:</strong> <%= run.distance %></p>
+        <p><strong>Time:</strong> <%= run.time %></p>
+        <button onclick="openOverlay(<%- JSON.stringify(run) %>)">More Info</button>
+    </div>
+<% }); %>
+
+<!-- Overlay to view all details of run and edit -->
+<div id="overlay" class="overlay">
+    <div class="overlay-content">
+        <span class="close" onclick="closeOverlay()">&times;</span>
+        <h2>Run Details</h2>
+        <p><strong>Title:</strong> <span id="overlay-title"></span></p>
+        <p><strong>Location:</strong> <span id="overlay-location"></span></p>
+        <p><strong>Distance:</strong> <span id="overlay-distance"></span></p>
+        <p><strong>Time:</strong> <span id="overlay-time"></span></p>
+        <p><strong>Notes:</strong> <span id="overlay-notes"></span></p>
+    </div>
+</div>
 
 <script>
+    function openOverlay(run) {
+        document.getElementById('overlay-title').innerText = run.title;
+        document.getElementById('overlay-location').innerText = run.location;
+        document.getElementById('overlay-distance').innerText = run.distance;
+        document.getElementById('overlay-time').innerText = run.time;
+        document.getElementById('overlay-notes').innerText = run.notes;
+
+        document.getElementById('overlay').style.display = 'block';
+    }
+
+    function closeOverlay() {
+        document.getElementById('overlay').style.display = 'none';
+    }
 </script>
 </body>
 </html>
