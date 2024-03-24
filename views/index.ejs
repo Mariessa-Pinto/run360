@@ -1,7 +1,7 @@
 <%- include('partials/header.ejs'); -%>
 <h1>Home</h1>
 
-<!-- Form for adding a new run -->
+
 <div class="run">
     <form class="edit" action="/add" method="post">
         <label for="title">Title:</label>
@@ -18,7 +18,7 @@
     </form>
 </div>
 
-<!-- Most recent 2 runs displaying-->
+
 <% listRuns.reverse().slice(0, 2).forEach(run => { %>
     <div class="run-item" id="run-item-<%= run.id %>">
         <div class="view-mode">
@@ -26,9 +26,7 @@
             <p><strong>Location:</strong> <%= run.location %></p>
             <p><strong>Distance:</strong> <%= run.distance %></p>
             <p><strong>Time:</strong> <%= run.time %></p>
-            <!-- Show Notes Button -->
             <button onclick="toggleNotes('<%= run.id %>')">Show Notes</button>
-            <!-- Initially Hidden Notes Section -->
             <p id="notes-<%= run.id %>" style="display: none;"><strong>Notes: <%= run.notes %></strong></p>
             <button onclick="toggleEdit('<%= run.id %>')">Edit</button>
         </div>
@@ -51,7 +49,7 @@
     </div>
 <% }); %>
 
-<!-- Overlay to view all details of run and edit -->
+
 <div id="overlay" class="overlay">
     <div class="overlay-content">
         <span class="close" onclick="closeOverlay()">&times;</span>
@@ -91,9 +89,9 @@ function toggleEdit(runId) {
 function toggleNotes(runId) {
     const notesPara = document.getElementById(`notes-${runId}`);
     if (notesPara.style.display === "none") {
-        notesPara.style.display = "block"; // Show notes
+        notesPara.style.display = "block"; 
     } else {
-        notesPara.style.display = "none"; // Hide notes again
+        notesPara.style.display = "none"; 
     }
 }
 </script>
