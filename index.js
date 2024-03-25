@@ -80,7 +80,7 @@ app.post("/delete", async (req, res) => {
 
     try {
         await db.query("DELETE FROM items WHERE id = $1", [id]);
-        res.json({ success: true });
+        // res.json({ success: true });
     } catch (err) {
         console.log(err);
         res.status(500).json({ success: false, error: "Error deleting the run." });

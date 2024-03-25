@@ -42,7 +42,6 @@
                                 <button type="submit">Save Changes</button>
                             </form>
                         </div class="delete-mode">
-                       
                         <div>
                         </div>
                     </div>
@@ -88,35 +87,35 @@
         };
 
         function deleteRun(runId) {
-            fetch('/delete', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: new URLSearchParams({ id: runId })
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.success) {
-                        const runItem = document.getElementById(`run-item-${runId}`);
-                        if (runItem) {
-                            runItem.remove();
-                            window.location.reload();
-                        }
-                    } else {
-                        alert(data.error);
-                    }
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                    alert('Failed to delete the run.');
-                });
-        }
+    fetch('/delete', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({ id: runId })
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                const runItem = document.getElementById(`run-item-${runId}`);
+                if (runItem) {
+                    runItem.remove();
+                    window.location.reload();
+                }
+            } else {
+                alert(data.error);
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('Failed to delete the run.');
+        });
+}
     </script>
     </body>
 
