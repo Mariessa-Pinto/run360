@@ -74,6 +74,20 @@ app.post("/edit", async (req, res) => {
     }
 });
 
+app.post("/delete", async (req, res) => {
+    const { id } = req.body;
+
+    try {
+        await db.query("DELETE FROM items WHERE id = $1", [id]);
+        // Send a JSON response indicating success
+        res.json({ success: true });
+    } catch (err) {
+        console.error(err);
+        // Send a JSON response indicating failure
+        res.status(500).json({ success: false, message: "Error deleting the run." });
+    }
+});
+
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
 });
