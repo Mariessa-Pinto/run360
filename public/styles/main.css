@@ -79,5 +79,54 @@ body {
     background-color: transparent;
 }
 
+.btn {
+    height: 3rem;
+    width: 5rem;
+    border-radius: 2rem;
+    background-color: transparent;
+}
 
+.run-item {
+    display: flex;
+    flex-direction: row;
+    gap: 10rem;
+    margin-bottom: 5rem;
+    margin-top: 2rem;
+    justify-content: center;
+    align-items: center;
+}
 
+.view-mode {
+    background-color: white;
+    width: 20rem;
+    height: 15rem;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.title {
+    font-size: 1.5rem;
+}
+
+.run-item-all {
+    background-color: white;
+    width: 20rem;
+    height: 15rem;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.run-main {
+    display: flex;
+    gap: 10rem;
+    margin-top: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-con {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+}

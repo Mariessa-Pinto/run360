@@ -2,8 +2,9 @@
     <div class="background">
         <div class="main">
             <% listRuns.reverse().forEach(run=> { %>
-                <div class="run-item">
-                    <p><strong>
+                <div class="run-main">
+                <div class="run-item-all">
+                    <p class="title"><strong>
                             <%= run.title %>
                         </strong></p>
                     <p><strong>Location:</strong>
@@ -19,6 +20,7 @@
                         <%= run.notes %>
                     </p>
                 </div>
+            </div>
                 <% }); %>
         </div>
     </div>

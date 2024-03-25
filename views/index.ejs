@@ -6,7 +6,7 @@
                 <% listRuns.reverse().slice(0, 2).forEach(run=> { %>
                     <div class="run-item" id="run-item-<%= run.id %>">
                         <div class="view-mode">
-                            <p><strong>Title: <%= run.title %></strong></p>
+                            <p class="title"><strong>Title: <%= run.title %></strong></p>
                             <p><strong>Location:</strong>
                                 <%= run.location %>
                             </p>
@@ -16,9 +16,15 @@
                             <p><strong>Time:</strong>
                                 <%= run.time %>
                             </p>
-                            <button onclick="toggleNotes('<%= run.id %>')">Show Notes</button>
+                            <div class="btn-con">
+                            <button class="btn" onclick="toggleNotes('<%= run.id %>')">Show Notes</button>
                             <p id="notes-<%= run.id %>" style="display: none;"><strong>Notes: <%= run.notes %></strong></p>
-                            <button onclick="toggleEdit('<%= run.id %>')">Edit</button>
+                            <button class="btn" onclick="toggleEdit('<%= run.id %>')">Edit</button>
+                            <form action="/delete" method="post">
+                                <input type="hidden" name="id" value="<%= run.id %>">
+                                <button class="btn" onclick="deleteRun(<%= run.id %>)">Delete</button>
+                            </form>
+                        </div>
                         </div>
                         <div class="edit-mode" hidden>
                             <form action="/edit" method="post">
@@ -36,10 +42,7 @@
                                 <button type="submit">Save Changes</button>
                             </form>
                         </div class="delete-mode">
-                        <form action="/delete" method="post">
-                            <input type="hidden" name="id" value="<%= run.id %>">
-                            <button onclick="deleteRun(<%= run.id %>)">Delete</button>
-                        </form>
+                       
                         <div>
                         </div>
                     </div>
