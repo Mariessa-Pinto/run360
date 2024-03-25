@@ -1,19 +1,29 @@
 <%- include('partials/header.ejs'); -%>
-
-
-<h1>All Runs</h1>
-   <% listRuns.reverse().forEach(run => { %>
-    <div class="run-item">
-        <p><strong> <%= run.title %></strong></p>
-        <p><strong>Location:</strong> <%= run.location %></p>
-        <p><strong>Distance:</strong> <%= run.distance %></p>
-        <p><strong>Time:</strong> <%= run.time %></p>
-        <p><strong>Notes:</strong> <%= run.notes %></p>
+    <div class="background">
+        <div class="main">
+            <% listRuns.reverse().forEach(run=> { %>
+                <div class="run-item">
+                    <p><strong>
+                            <%= run.title %>
+                        </strong></p>
+                    <p><strong>Location:</strong>
+                        <%= run.location %>
+                    </p>
+                    <p><strong>Distance:</strong>
+                        <%= run.distance %>
+                    </p>
+                    <p><strong>Time:</strong>
+                        <%= run.time %>
+                    </p>
+                    <p><strong>Notes:</strong>
+                        <%= run.notes %>
+                    </p>
+                </div>
+                <% }); %>
+        </div>
     </div>
-<% }); %>
     </main>
-
     <script>
     </script>
-</body>
-</html>
+    </body>
+    </html>
