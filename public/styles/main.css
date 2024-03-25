@@ -19,6 +19,7 @@
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   
 }
 
 .close {
@@ -28,3 +29,75 @@
     font-size: 20px;
     cursor: pointer;
 }
+
+.main {
+    display: flex;
+    flex-direction: row;
+    margin-left: 20%;
+    
+}
+.background{
+    height: 1000px;
+    width: 2000px;
+    background-color: lightgray;
+}
+
+.header {
+    height: 100%;
+    width: 250px; 
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.edit{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    
+}
+.run{
+    margin-left: 50px;
+    width: 800px;
+    height: 600px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    background-color: white;
+    
+}
+.inputbox{
+    border: none; 
+    outline: none; 
+    box-shadow: none; 
+}
+.runtitle{
+    font-size: 32px;
+    font-weight: 800;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.links{
+    list-style-type: none;
+    font-size: 24px;
+}
+.pages{
+    text-decoration: none;
+    color: black;
+}
+
+.caption{
+    font-size: 100px;
+}
+
+.addbutton{
+    height: 50px;
+    width: 200px;
+    border-radius: 20px;
+    background-color: transparent;
+}
+
+
+
