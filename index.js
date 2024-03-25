@@ -1,7 +1,7 @@
 import express from "express";
 import pg from "pg";
 import path from "path";
-import { fileURLToPath } from 'url'; 
+import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -42,7 +42,7 @@ app.get("/", async (req, res) => {
 app.get("/allRuns", async (req, res) => {
     try {
         const result = await db.query("SELECT * FROM items ORDER BY id ASC");
-        const listRuns = result.rows; 
+        const listRuns = result.rows;
         res.render("allRuns", { listRuns });
     } catch (err) {
         console.log(err);
@@ -51,7 +51,7 @@ app.get("/allRuns", async (req, res) => {
 });
 
 app.post("/add", async (req, res) => {
-    const { title, location, distance, time, notes } = req.body; 
+    const { title, location, distance, time, notes } = req.body;
 
     try {
         await db.query("INSERT INTO items (title, location, distance, time, notes) VALUES ($1, $2, $3, $4, $5)", [title, location, distance, time, notes]);
@@ -63,7 +63,7 @@ app.post("/add", async (req, res) => {
 });
 
 app.post("/edit", async (req, res) => {
-    const { id, title, location, distance, time, notes } = req.body; 
+    const { id, title, location, distance, time, notes } = req.body;
 
     try {
         await db.query("UPDATE items SET title=$1, location=$2, distance=$3, time=$4, notes=$5 WHERE id=$6", [title, location, distance, time, notes, id]);
@@ -75,15 +75,15 @@ app.post("/edit", async (req, res) => {
 });
 
 app.post("/delete", async (req, res) => {
-      console.log("Delete request received:", req.body);
+    console.log("Delete request received:", req.body);
     const { id } = req.body;
 
     try {
         await db.query("DELETE FROM items WHERE id = $1", [id]);
-        res.redirect("/");
+        res.json({ success: true });
     } catch (err) {
         console.log(err);
-        res.send("Error deleting the run.");
+        res.status(500).json({ success: false, error: "Error deleting the run." });
     }
 });
 
