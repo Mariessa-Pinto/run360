@@ -1,20 +1,27 @@
 <%- include('partials/header.ejs'); -%>
+
+
+<div class="background">
 <h1>Home</h1>
+<div class="main">
+
 
 
 <div class="run">
+
     <form class="edit" action="/add" method="post">
+        <h1 class="runtitle">Enter Your Run</h1>
         <label for="title">Title:</label>
-        <input type="text" id="title" name="title" autocomplete="off" autofocus required>
+        <input class="inputbox" type="text" id="title" name="title" autocomplete="off" autofocus required>
         <label for="location">Location:</label>
-        <input type="text" id="location" name="location" autocomplete="off" autofocus required>
+        <input class="inputbox" type="text" id="location" name="location" autocomplete="off" autofocus required>
         <label for="time">Time:</label>
-        <input type="text" id="time" name="time" autocomplete="off" required>
+        <input class="inputbox" type="text" id="time" name="time" autocomplete="off" required>
         <label for="distance">Distance:</label>
-        <input type="text" id="distance" name="distance" autocomplete="off" required>
+        <input class="inputbox" type="text" id="distance" name="distance" autocomplete="off" required>
         <label for="notes">Notes:</label>
-        <input type="text" id="notes" name="notes" autocomplete="off">
-        <a href="/allRuns"><button type="submit">Add Run</button></a>
+        <input class="inputbox" type="text" id="notes" name="notes" autocomplete="off">
+        <a href="/allRuns"><button class="addbutton" type="submit">Add Run</button></a>
     </form>
 </div>
 
@@ -61,6 +68,9 @@
         <p><strong>Notes:</strong> <span id="overlay-notes"></span></p>
     </div>
 </div>
+</div>
+</div>
+
 
 
 
