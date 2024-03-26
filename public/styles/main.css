@@ -82,9 +82,12 @@ body {
 }
 
 .inputbox{
-    border: none; 
-    outline: none; 
+    border-style: solid;
+    border-color: #d3d3d3; 
+    border-radius: 1rem; 
     box-shadow: none; 
+    height: 2rem;
+    padding: 0.5rem;
 }
 
 .runtitle{
@@ -113,6 +116,8 @@ body {
     width: 200px;
     border-radius: 20px;
     background-color: transparent;
+    border-style: solid;
+    cursor: pointer;
 }
 
 .btn {
@@ -120,6 +125,8 @@ body {
     width: 5rem;
     border-radius: 2rem;
     background-color: transparent;
+    border-style: solid;
+    cursor: pointer;
 }
 
 .run-item {
@@ -127,6 +134,7 @@ body {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    margin-bottom: 1rem;
 }
 
 .view-mode {
